@@ -189,6 +189,8 @@ class Canvas:
             ],
         )
         plt.colorbar()
+        plt.tight_layout()
+        plt.show()
 
     def __add__(self, other):
         self.map += other.map

@@ -88,9 +88,9 @@ def sample_protocell(
 ) -> None:
     """Sample a protocell with a given incidence.
 
-    For a given protocell, each unique `Feature` is sampled given its sampling
-        number (see `Feature.sampling`). Then the permutation of the sampled
-        features is simulated with the given incidence. The output is a
+        For a given protocell, each unique `Feature` is sampled given its sampling
+            number (see `Feature.sampling`). Then the permutation of the sampled
+            features is simulated with the given incidence. The output is a
 
     Args:
         protocell (Protocell): The protocell to sample.
@@ -288,6 +288,8 @@ class Metamodel:
 
         current_vmin = feature.vmin
         current_vmax = feature.vmax
+
+        print(current_vmin, 'current_vmin____current_vmax', current_vmax)
 
         if vmin is None:
             vmin = current_vmin

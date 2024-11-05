@@ -1564,9 +1564,11 @@ class LensAssembly:
     def show_color_psf(
         self,
         crop_factor: float = 1.0,
+        dir_save: str = r'/home/eduser/pycharm/metabox/storage',
     ) -> None:
         self.compute_field_on_sensor().show_color_intensity(
-            crop_factor=crop_factor
+            crop_factor=crop_factor,
+            dir_save=dir_save
         )
         self.clear_cache()
 

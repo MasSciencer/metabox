@@ -3,6 +3,7 @@ This file contains the classes and functions to simulate the propagation of ligh
 """
 from __future__ import annotations
 
+from datetime import datetime
 import os
 
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
@@ -259,10 +260,11 @@ class Field2D(FieldProperties):
             plt.colorbar(mappable=im, cax=cax)
             plt.show()
 
-    def show_color_intensity(self, crop_factor=1.0):
+    def show_color_intensity(self, dir_save, crop_factor=1.0):
         """Shows the intensity of the field.
 
         Args:
+            dir_save: folder for saving the intensity distribution.
             crop_factor (float): The crop factor. Must be less than or equal to 1.0.
         """
 
@@ -302,6 +304,7 @@ class Field2D(FieldProperties):
                 )
             )
             ax.set_title(title)
+            plt.savefig(os.path.join(dir_save, datetime.now().strftime("%H%M%S")))
             plt.show()
 
     def to_rgb_intensity(self):

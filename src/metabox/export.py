@@ -37,6 +37,39 @@ def unit_cell_to_gds_shape(cell: rcwa.UnitCell, layer: int = 0):
         shape = gdspy.boolean(shape, next_shape, "or")
     return shape
 
+def unit_cell_to_svg (shape, path, layer: int = 0, ):
+    importlib.reload(gdspy)
+    # The GDSII file is called a library, which contains multiple cells.
+    cell = gdspy.Cell('main')
+    cell.add(shape)
+    style = {
+        (1, 0): {'fill': '#ffffff', 'stroke': 'black'}
+    }
+    cell.write_svg(
+        path,
+        scaling= 5e4,
+        style=style,
+        fontstyle=None,
+        background="#d9e1dc",
+        pad="10%",
+        precision=None
+    )
+
+def save_shape_gds (shape, path, name, layer: int = 0, ):
+    importlib.reload(gdspy)
+    cell = gdspy.Cell('main')
+    cell.add(shape)
+
+    lib = gdspy.GdsLibrary()
+    lib.new_cell("top")
+    lib.add(
+        cell,
+        include_dependencies=True,
+        overwrite_duplicate=True,
+        update_references=True
+    )
+    #write in directory
+    lib.write_gds("{0}/{1}.gds".format(path, name))
 
 def gds_shape_force_4fold_symmetry(
     shape: gdspy.PolygonSet,

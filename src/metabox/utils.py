@@ -148,7 +148,8 @@ def unravel_incidence(incidence: Incidence) -> Dict[str, Any]:
         theta=incidence.theta,
         phi=incidence.phi,
     )
-    x_pol, y_pol = incidence.jones_vector
+    x_pol = incidence.jones_vector[0]
+    y_pol = incidence.jones_vector[1]
     x_pol_batch = tf.cast(
         tf.repeat(x_pol, len(wavelength_batch)), tf.complex64
     )

@@ -16,7 +16,6 @@ from metabox.utils import CoordType, Feature, Incidence, ParameterType
 # Suppress tensorflow warnings
 tf.get_logger().setLevel(logging.ERROR)
 
-
 def _get_features(parameter) -> List[Feature]:
     """Returns the features of the shape.
 
@@ -997,6 +996,9 @@ def simulate_parameterized_unit_cells(
     minibatch_size = sim_config.minibatch_size
 
     simulate_func = simulate_parameterized_unit_cells_one_batch
+
+    print(parameter_tensor.shape[1])
+    print(minibatch_size)
 
     if minibatch_size < parameter_tensor.shape[1]:
         # TODO: multi-GPU support
